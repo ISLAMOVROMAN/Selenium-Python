@@ -1,35 +1,35 @@
-# Selenium-Python Course - Automated Tests Repository
+# 🌟 Selenium-Python Course - Automated Tests Repository
 
-This repository contains automated tests written in Python using Selenium for a structured learning course. Below is the overview of the lessons, test scripts, and their purposes.
-
----
-
-## Lessons Overview
-
-| Lesson | File                  | Title                                | Description                                                                                      |
-|--------|-----------------------|--------------------------------------|--------------------------------------------------------------------------------------------------|
-| Lesson 1 | `1_chromedriver.py`   | Chrome Driver Setup                  | Basic setup of ChromeDriver using Selenium and `webdriver_manager`.                             |
-| Lesson 2 | `2_firefoxdriver.py`  | Firefox Driver Setup                 | Basic setup of FirefoxDriver using Selenium and `webdriver_manager`.                            |
-| Lesson 3 | `3_navigation.py`     | Navigation Example                   | Demonstrates basic navigation to a webpage and retrieving URL and title information.            |
-| Lesson 4 | `4_Verification.py`   | Element Verification                 | Verification of web elements on a webpage by different locators like `ID`, `CLASS_NAME`, etc.   |
-| Lesson 5 | `5_find.py`           | Find and Interact                    | Searching for elements and performing interactions like clicks and input.                       |
-| Lesson 6 | `6_xpath.py`          | XPath Example                        | Using XPath for locating and interacting with elements on a webpage.                            |
-| Lesson 7 | `7_clicktutor.py`     | Complete Interaction Flow            | End-to-end interaction: email input, password input, and button click with error handling.      |
-| Lesson 8 | To Be Added           | Reserved for future enhancements     | Placeholder for upcoming tests.                                                                 |
+This repository contains **Selenium-based Python scripts** designed for structured learning and automation testing. Each lesson introduces new concepts, techniques, and use cases to help you master web automation.
 
 ---
 
-## Setup and Installation
+## 📚 Lessons Overview
+
+| **#** | **File**                | **Title**                        | **Description**                                                                                |
+|-------|-------------------------|----------------------------------|------------------------------------------------------------------------------------------------|
+| 1     | `1_chromedriver.py`     | Chrome Driver Setup              | Basic setup of ChromeDriver using Selenium and `webdriver_manager`.                           |
+| 2     | `2_firefoxdriver.py`    | Firefox Driver Setup             | Basic setup of FirefoxDriver using Selenium and `webdriver_manager`.                          |
+| 3     | `3_navigation.py`       | Navigation Example               | Demonstrates basic navigation to a webpage and retrieving URL and title information.          |
+| 4     | `4_Verification.py`     | Element Verification             | Verification of web elements using different locators like `ID`, `CLASS_NAME`, and more.      |
+| 5     | `5_find.py`             | Find and Interact                | Searching for elements and performing interactions like clicks and input.                     |
+| 6     | `6_xpath.py`            | XPath Example                    | Using XPath for locating and interacting with elements on a webpage.                          |
+| 7     | `7_clicktutor.py`       | Complete Interaction Flow        | End-to-end interaction: email input, password input, and button click with error handling.    |
+| 8     | To Be Added             | Reserved for Future Enhancements | Placeholder for upcoming lessons and additional tests.                                        |
+
+---
+
+## ⚙️ Setup and Installation
 
 To run these tests locally, follow the steps below:
 
-### Prerequisites
+### 🛠 Prerequisites
 
-- Python 3.7 or higher
-- Selenium library installed (`pip install selenium`)
-- Browser-specific drivers managed by `webdriver_manager`
+- **Python 3.7 or higher**
+- **Selenium** library installed (`pip install selenium`)
+- **Browser-specific drivers** managed by `webdriver_manager`
 
-### Installation Steps
+### 🚀 Installation Steps
 
 1. Clone this repository:
    ```bash
