@@ -18,14 +18,14 @@ This repository contains automation scripts for various test scenarios designed 
 
 | **Lesson** | **File**                  | **Title**                                | **Description**                                                                                      |
 |------------|---------------------------|------------------------------------------|------------------------------------------------------------------------------------------------------|
-| Lesson 1   | `1_chromedriver.py`       | Chrome Driver Setup                      | Basic setup of ChromeDriver using Selenium and `webdriver_manager`.                                 |
-| Lesson 2   | `2_firefoxdriver.py`      | Firefox Driver Setup                     | Basic setup of FirefoxDriver using Selenium and `webdriver_manager`.                                |
-| Lesson 3   | `navigation.py`           | Navigation Example                       | Demonstrates basic navigation to a webpage and retrieving URL and title information.                |
-| Lesson 4   | `Verification.py`         | Element Verification                     | Verification of web elements on a webpage by different locators like `ID`, `CLASS_NAME`, etc.        |
-| Lesson 5   | `find.py`                 | Find and Interact                        | Searching for elements and performing interactions like clicks and input.                           |
-| Lesson 6   | *To Be Added*             | *Reserved for additional tests*          | Placeholder for future enhancements.                                                                |
-| Lesson 7   | `clicktutor.py`           | Complete Interaction Flow                | End-to-end interaction: email input, password input, and button click with error handling.          |
-| Lesson 8   | *To Be Added*             | *Reserved for additional tests*          | Placeholder for future enhancements.                                                                |
+| 1   | `1_chromedriver.py`       | Chrome Driver Setup                      | Basic setup of ChromeDriver using Selenium and `webdriver_manager`.                                 |
+| 2   | `2_firefoxdriver.py`      | Firefox Driver Setup                     | Basic setup of FirefoxDriver using Selenium and `webdriver_manager`.                                |
+| 3   | `navigation.py`           | Navigation Example                       | Demonstrates basic navigation to a webpage and retrieving URL and title information.                |
+| 4   | `Verification.py`         | Element Verification                     | Verification of web elements on a webpage by different locators like `ID`, `CLASS_NAME`, etc.        |
+| 5   | `find.py`                 | Find and Interact                        | Searching for elements and performing interactions like clicks and input.                           |
+| 6   | *To Be Added*             | *Reserved for additional tests*          | Placeholder for future enhancements.                                                                |
+| 7   | `clicktutor.py`           | Complete Interaction Flow                | End-to-end interaction: email input, password input, and button click with error handling.          |
+| 8   | *To Be Added*             | *Reserved for additional tests*          | Placeholder for future enhancements.                                                                |
 
 ---
 
