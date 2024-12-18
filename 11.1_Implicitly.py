@@ -6,43 +6,46 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import logging
 
-# Настройка логирования
+# Logging setup / Настройка логирования
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
-# Инициализация драйвера
+# Initialize ChromeDriver / Инициализация драйвера Chrome
 service = Service(executable_path=ChromeDriverManager().install())
 driver = webdriver.Chrome(service=service)
+
+# Set an implicit wait / Устанавливаем неявное ожидание
 driver.implicitly_wait(10)
 
 try:
-    # Открываем веб-страницу
-    logging.info("Открываем страницу")
+    # Open the web page / Открываем веб-страницу
+    logging.info("Opening the page... / Открываем страницу...")
     driver.get("https://demoqa.com/dynamic-properties")
 
-    # Удаляем iframe рекламы, если он мешает
+    # Remove iframe ads if they are present / Удаляем iframe рекламы, если он присутствует
     try:
-        logging.info("Проверяем наличие iframe рекламы")
+        logging.info("Checking for iframe ads... / Проверяем наличие iframe рекламы...")
         iframe = driver.find_element(By.XPATH, "//iframe[contains(@id,'google_ads_iframe')]")
         driver.execute_script("arguments[0].remove();", iframe)
-        logging.info("Iframe рекламы успешно удален")
+        logging.info("Iframe ads removed successfully. / Iframe рекламы успешно удален.")
     except Exception as e:
-        logging.info("Iframe рекламы не найден, продолжаем")
+        logging.info("No iframe ads found, continuing... / Iframe рекламы не найден, продолжаем...")
 
-    # Явное ожидание, пока кнопка не станет кликабельной
-    logging.info("Ожидаем, пока кнопка станет кликабельной")
+    # Explicit wait for the button to become clickable / Явное ожидание, пока кнопка не станет кликабельной
+    logging.info("Waiting for the button to become clickable... / Ожидаем, пока кнопка станет кликабельной...")
     visible_after_button = WebDriverWait(driver, 20).until(
         EC.element_to_be_clickable((By.ID, "visibleAfter"))
     )
 
-    # Кликаем по кнопке
-    logging.info("Кликаем по кнопке")
+    # Click the button / Кликаем по кнопке
+    logging.info("Clicking the button... / Кликаем по кнопке...")
     visible_after_button.click()
-    logging.info("Кнопка успешно нажата")
+    logging.info("The button was clicked successfully. / Кнопка успешно нажата.")
 
 except Exception as e:
-    logging.error(f"Произошла ошибка: {e}")
+    # Log any errors that occur / Логируем возникшие ошибки
+    logging.error(f"An error occurred: {e} / Произошла ошибка: {e}")
 
 finally:
-    # Закрываем браузер
+    # Close the browser / Закрываем браузер
     driver.quit()
-    logging.info("Браузер закрыт")
+    logging.info("The browser has been closed. / Браузер закрыт.")
