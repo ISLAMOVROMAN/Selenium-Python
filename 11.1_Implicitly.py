@@ -5,6 +5,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import logging
+import time
 
 # Logging setup / Настройка логирования
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -30,11 +31,16 @@ try:
     except Exception as e:
         logging.info("No iframe ads found, continuing... / Iframe рекламы не найден, продолжаем...")
 
+    # Scroll to the button / Скроллим к кнопке
+    logging.info("Scrolling to the button... / Скроллим к кнопке...")
+    visible_after_button = WebDriverWait(driver, 20).until(
+        EC.presence_of_element_located((By.ID, "visibleAfter"))
+    )
+    driver.execute_script("arguments[0].scrollIntoView(true);", visible_after_button)
+
     # Explicit wait for the button to become clickable / Явное ожидание, пока кнопка не станет кликабельной
     logging.info("Waiting for the button to become clickable... / Ожидаем, пока кнопка станет кликабельной...")
-    visible_after_button = WebDriverWait(driver, 20).until(
-        EC.element_to_be_clickable((By.ID, "visibleAfter"))
-    )
+    WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.ID, "visibleAfter")))
 
     # Click the button / Кликаем по кнопке
     logging.info("Clicking the button... / Кликаем по кнопке...")
@@ -46,6 +52,8 @@ except Exception as e:
     logging.error(f"An error occurred: {e} / Произошла ошибка: {e}")
 
 finally:
+    # Pause for visual confirmation / Пауза для визуального подтверждения
+    time.sleep(3)
     # Close the browser / Закрываем браузер
     driver.quit()
     logging.info("The browser has been closed. / Браузер закрыт.")
