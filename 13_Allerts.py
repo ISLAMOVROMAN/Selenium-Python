@@ -6,41 +6,68 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from webdriver_manager.chrome import ChromeDriverManager
 
-# Initialize ChromeDriver via Service / Инициализация ChromeDriver через Service
+# Инициализация драйвера / Initializing the driver
 service = Service(ChromeDriverManager().install())
 driver = webdriver.Chrome(service=service)
 
-# Set up explicit wait / Настройка явного ожидания
+# Настройка явного ожидания / Setting up explicit wait
 wait = WebDriverWait(driver, 10, poll_frequency=1)
 
 try:
-    # Open the page / Открытие страницы
+    # Открытие страницы / Opening the page
     driver.get("https://demoqa.com/alerts")
-    print("The site has been successfully opened. / Сайт успешно открыт.")
+    print("Сайт успешно открыт. / The site has been successfully opened.")
 
-    # Locator for the button that triggers the alert / Локатор кнопки для вызова алерта
+    # Обработка первого алерта / Handling the first alert
     ALERT_BUTTON = (By.XPATH, "//button[@id='alertButton']")
+    wait.until(EC.element_to_be_clickable(ALERT_BUTTON)).click()  # Клик по кнопке алерта / Clicking the alert button
+    alert = wait.until(EC.alert_is_present())  # Ожидание появления алерта / Waiting for the alert to appear
+    print(f"Текст первого алерта: {alert.text} / First alert text: {alert.text}")
+    time.sleep(2)  # Задержка для визуального эффекта / Pause for visual check
+    alert.accept()  # Принятие алерта / Accepting the alert
+    print("Первый алерт успешно принят. / The first alert has been accepted.")
 
-    # Wait for the button to be clickable and click it / Ожидание кликабельности кнопки и клик по ней
-    print("Waiting for the alert button to be clickable... / Ожидание кликабельности кнопки с алертом...")
-    wait.until(EC.element_to_be_clickable(ALERT_BUTTON)).click()
-    print("The alert button has been clicked. / Кнопка с алертом нажата.")
+    # Обработка второго алерта (с таймером) / Handling the second alert (with a timer)
+    TIMER_ALERT_BUTTON = (By.XPATH, "//button[@id='timerAlertButton']")
 
-    # Wait for the alert to appear / Ожидание появления алерта
-    print("Waiting for the alert to appear... / Ожидание появления алерта...")
-    alert = wait.until(EC.alert_is_present())
+    # Скрытие перекрывающего iframe / Hiding the overlapping iframe
+    driver.execute_script(
+        "document.getElementById('google_ads_iframe_/21849154601,22343295815/Ad.Plus-Anchor_0').style.display='none';"
+    )
 
-    # Work with the alert / Работа с алертом
-    print(f"Alert text: {alert.text} / Текст алерта: {alert.text}")
-    time.sleep(2)  # Pause for visual check / Пауза для визуальной проверки
-    alert.accept()
-    print("The alert has been accepted. / Алерт успешно принят.")
+    # Клик по кнопке / Clicking the button
+    timer_button = wait.until(EC.presence_of_element_located(TIMER_ALERT_BUTTON))
+    driver.execute_script("arguments[0].scrollIntoView(true);", timer_button)  # Прокрутка к кнопке / Scrolling to the button
+    wait.until(EC.element_to_be_clickable(TIMER_ALERT_BUTTON)).click()
+    print("Ожидание появления второго алерта... / Waiting for the second alert to appear...")
+    alert = wait.until(EC.alert_is_present())  # Ожидание алерта / Waiting for the alert
+    print(f"Текст второго алерта: {alert.text} / Second alert text: {alert.text}")
+    alert.accept()  # Принятие алерта / Accepting the alert
+    print("Второй алерт успешно принят. / The second alert has been accepted.")
+
+    # Обработка третьего алерта (подтверждение) / Handling the third alert (confirmation)
+    CONFIRM_BUTTON = (By.XPATH, "//button[@id='confirmButton']")
+    wait.until(EC.element_to_be_clickable(CONFIRM_BUTTON)).click()  # Клик по кнопке / Clicking the button
+    print("Ожидание появления третьего алерта... / Waiting for the third alert to appear...")
+    alert = wait.until(EC.alert_is_present())  # Ожидание алерта / Waiting for the alert
+    print(f"Текст третьего алерта: {alert.text} / Third alert text: {alert.text}")
+    alert.dismiss()  # Отмена алерта / Dismissing the alert
+    print("Третий алерт успешно отменён. / The third alert has been dismissed.")
+
+    # Обработка четвёртого алерта (prompt) / Handling the fourth alert (prompt)
+    PROMPT_BUTTON = (By.XPATH, "//button[@id='promtButton']")
+    wait.until(EC.element_to_be_clickable(PROMPT_BUTTON)).click()  # Клик по кнопке / Clicking the button
+    print("Ожидание появления четвёртого алерта... / Waiting for the fourth alert to appear...")
+    alert = wait.until(EC.alert_is_present())  # Ожидание алерта / Waiting for the alert
+    print(f"Текст четвёртого алерта: {alert.text} / Fourth alert text: {alert.text}")
+    alert.send_keys("Тестовое сообщение")  # Ввод текста в prompt / Entering text in the prompt
+    alert.accept()  # Принятие алерта / Accepting the alert
+    print("Четвёртый алерт успешно принят с вводом текста. / The fourth alert has been accepted with input.")
 
 except Exception as e:
-    # Print error message if any issue occurs / Вывод сообщения об ошибке при возникновении проблемы
-    print(f"An error occurred: {e} / Произошла ошибка: {e}")
+    print(f"Произошла ошибка: {e} / An error occurred: {e}")
 
 finally:
-    # Close the browser / Завершение работы драйвера
-    print("Closing the browser... / Закрытие браузера...")
+    # Закрытие браузера / Closing the browser
+    print("Закрытие браузера... / Closing the browser...")
     driver.quit()
